@@ -7,7 +7,7 @@
   <title>Note - Files</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,500;0,600;0,700;0,800;1,600;1,700;1,800&family=Orbitron:wght@600;700;800&family=Poppins:ital,wght@0,600;0,700;1,600;1,700&family=Rajdhani:wght@600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,500;0,600;0,700;0,800;1,600;1,700;1,800&family=Orbitron:wght@600;700;800&family=Poppins:ital,wght@0,600;0,700;1,600;1,700&fam[...]" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <!-- File Preview Libraries -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css">
@@ -26,7 +26,7 @@
     </button>
 
     <div class="sidebar-logo">
-      <img src="logo.png" alt="Logo">
+      <img src="./logo.png" alt="Logo" style="display:block; width:48px; height:auto;" loading="eager">
     </div>
 
     <ul class="sidebar-nav" id="sidebarNav">
@@ -74,7 +74,7 @@
         <a href="#" class="nav-link">
           <span class="nav-icon">
             <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M12 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7zm7.5-2.5h-1.8a7.9 7.9 0 0 0-1.2-2.7l1.2-1.2-1.5-1.5-1.2 1.2A7.9 7.9 0 0 0 12 4.3V2h-1.8v2.3a7.9 7.9 0 0 0-2.7 1.2L6.3 5.7 4.8 7.2l1.2 1.2A7.9 7.9 0 0 0 4.3 12H2v1.8h2.3a7.9 7.9 0 0 0 1.2 2.7L4.3 17.3l1.5 1.5 1.2-1.2A7.9 7.9 0 0 0 12 19.7V22h1.8v-2.3a7.9 7.9 0 0 0 2.7-1.2l1.2 1.2 1.5-1.5-1.2-1.2a7.9 7.9 0 0 0 1.2-2.7H19.5V13z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+              <path d="M12 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7zm7.5-2.5h-1.8a7.9 7.9 0 0 0-1.2-2.7l1.2-1.2-1.5-1.5-1.2 1.2A7.9 7.9 0 0 0 12 4.3V2h-1.8v2.3a7.9 7.9 0 0 0-2.7 1.2L6.3 5.7 4.8 7.2l1.[...]"/>
             </svg>
           </span>
           <span class="nav-text">Settings</span>
@@ -111,7 +111,7 @@
             <svg viewBox="0 0 24 24" aria-hidden="true">
               <path d="M11 4a7 7 0 1 1 0 14 7 7 0 0 1 0-14zm9 16-3.8-3.8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
             </svg>
-            <input id="globalSearchInput" type="search" placeholder="Search folders, files, notes..." autocomplete="off" spellcheck="false" aria-expanded="false" aria-controls="globalSearchPanel">
+            <input id="globalSearchInput" type="search" placeholder="Search folders, files, notes..." autocomplete="off" spellcheck="false" aria-expanded="false" aria-controls="globalSearchPanel"[...]
             <div id="globalSearchPanel" class="global-search-panel hidden" aria-hidden="true">
               <div class="global-search-filters" role="tablist" aria-label="Search filters">
                 <button type="button" class="global-search-filter is-active" data-search-filter="all">All</button>
@@ -128,12 +128,12 @@
         <div class="top-nav-actions">
           <button type="button" class="top-nav-icon-btn" aria-label="Notifications">
             <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M15 17h5l-1.4-1.4a2 2 0 0 1-.6-1.4V11a6 6 0 1 0-12 0v3.2a2 2 0 0 1-.6 1.4L4 17h5m6 0a3 3 0 0 1-6 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M15 17h5l-1.4-1.4a2 2 0 0 1-.6-1.4V11a6 6 0 1 0-12 0v3.2a2 2 0 0 1-.6 1.4L4 17h5m6 0a3 3 0 0 1-6 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="rou[...]"/>
             </svg>
           </button>
           <button type="button" class="top-nav-icon-btn" aria-label="Settings">
             <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M12 8.5A3.5 3.5 0 1 1 8.5 12 3.5 3.5 0 0 1 12 8.5zm8 3.5-1.8-.7a6.9 6.9 0 0 0-.6-1.5l.8-1.8-1.7-1.7-1.8.8a6.9 6.9 0 0 0-1.5-.6L12 4h-2l-.7 1.8a6.9 6.9 0 0 0-1.5.6L6 5.6 4.3 7.3l.8 1.8a6.9 6.9 0 0 0-.6 1.5L2.7 12v2l1.8.7a6.9 6.9 0 0 0 .6 1.5l-.8 1.8L6 19.7l1.8-.8a6.9 6.9 0 0 0 1.5.6L10 21.3h2l.7-1.8a6.9 6.9 0 0 0 1.5-.6l1.8.8 1.7-1.7-.8-1.8a6.9 6.9 0 0 0 .6-1.5L20 14z" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+              <path d="M12 8.5A3.5 3.5 0 1 1 8.5 12 3.5 3.5 0 0 1 12 8.5zm8 3.5-1.8-.7a6.9 6.9 0 0 0-.6-1.5l.8-1.8-1.7-1.7-1.8.8a6.9 6.9 0 0 0-1.5-.6L12 4h-2l-.7 1.8a6.9 6.9 0 0 0-1.5.6L6 5.6 4.3[..."/>
             </svg>
           </button>
           <div class="profile-chip">
@@ -260,7 +260,7 @@
 
         <div class="folder-section">
           <h3>Files</h3>
-          <input type="file" id="fileInput" accept=".png,.jpg,.jpeg,.gif,.webp,.svg,.bmp,.avif,.pdf,.txt,.md,.csv,.log,.json,.js,.ts,.html,.css,.xml,.yml,.yaml,.doc,.docx,.rtf,.xls,.xlsx,.ppt,.pptx" hidden>
+          <input type="file" id="fileInput" accept=".png,.jpg,.jpeg,.gif,.webp,.svg,.bmp,.avif,.pdf,.txt,.md,.csv,.log,.json,.js,.ts,.html,.css,.xml,.yml,.yaml,.doc,.docx,.rtf,.xls,.xlsx,.ppt,.pp[...]"
           <div id="filesList"></div>
         </div>
       </div>
@@ -389,5 +389,3 @@
 </body>
 
 </html>
-
-
