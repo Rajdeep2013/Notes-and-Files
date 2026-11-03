@@ -166,11 +166,13 @@ let notebookState = {
   currentPage: 0
 };
 
-if(savedUsername && welcomeText) {
-
-  welcomeText.textContent =
-    `Welcome, ${savedUsername}`;
-
+if (savedUsername && welcomeText) {
+  // Keep the stable Google user ID for private data keys, never show it as a name.
+  const googleUser = savedUsername.startsWith("google-");
+  const friendlyName = googleUser
+    ? localStorage.getItem("notepilot:auth:display-name:" + savedUsername)
+    : savedUsername;
+  welcomeText.textContent = friendlyName ? "Welcome, " + friendlyName : "Welcome back!";
 }
 
 /* ---------------- TODO SYSTEM ---------------- */
