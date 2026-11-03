@@ -629,11 +629,33 @@
     migrateLegacyAccount();
     tryAutoRedirect();
   </script>
-<script type="module">
-import {createClient} from "https://esm.sh/@supabase/supabase-js@2.49.10";
-const client=createClient("https://hnsjeoauzresxkbfrodu.supabase.co","sb_publishable_0D0se4u5F0n6z9Xgx3sUQg_o96wTS58");
-const status=document.getElementById("googleStatus");
-document.getElementById("googleSignIn").onclick=async()=>{status.textContent="Opening Google sign-in…";const {error}=await client.auth.signInWithOAuth({provider:"google",options:{redirectTo:location.origin+location.pathname+"?oauth=1"}});if(error)status.textContent=error.message};
-const {data:{session}}=await client.auth.getSession();if(session?.user){const username="google-"+session.user.id;localStorage.setItem("notepilot:auth:active-user:v1",username);localStorage.setItem("username",username);location.replace("index.html")}
+<script>
+(function(){
+  const button=document.getElementById('googleSignIn');
+  const status=document.getElementById('googleStatus');
+  if(!button||!status)return;
+  button.addEventListener('click',async function(){
+    button.disabled=true;
+    status.textContent='Connecting to Google…';
+    try{
+      const sdk=await import('https://esm.sh/@supabase/supabase-js@2.49.10');
+      const client=sdk.createClient('https://hnsjeoauzresxkbfrodu.supabase.co','sb_publishable_0D0se4u5F0n6z9Xgx3sUQg_o96wTS58');
+      const {error}=await client.auth.signInWithOAuth({provider:'google',options:{redirectTo:location.origin+location.pathname+'?oauth=1'}});
+      if(error)throw error;
+    }catch(err){status.textContent='Google sign-in could not start: '+(err.message||'Connection error')+'. Check your internet connection and try again.';button.disabled=false}
+  });
+  if(new URLSearchParams(location.search).has('oauth')){
+    status.textContent='Finishing Google sign-in…';
+    import('https://esm.sh/@supabase/supabase-js@2.49.10').then(async sdk=>{
+      const client=sdk.createClient('https://hnsjeoauzresxkbfrodu.supabase.co','sb_publishable_0D0se4u5F0n6z9Xgx3sUQg_o96wTS58');
+      const {data,error}=await client.auth.getSession();if(error)throw error;
+      if(!data.session?.user){status.textContent='Google session not found. Please try signing in again.';return}
+      const username='google-'+data.session.user.id;
+      localStorage.setItem('notepilot:auth:active-user:v1',username);
+      localStorage.setItem('username',username);
+      location.replace('index.html');
+    }).catch(err=>{status.textContent='Google sign-in failed: '+(err.message||'Unknown error')});
+  }
+})();
 </script></body>
 </html>
