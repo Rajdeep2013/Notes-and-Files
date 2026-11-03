@@ -650,7 +650,12 @@
       const client=sdk.createClient('https://hnsjeoauzresxkbfrodu.supabase.co','sb_publishable_0D0se4u5F0n6z9Xgx3sUQg_o96wTS58');
       const {data,error}=await client.auth.getSession();if(error)throw error;
       if(!data.session?.user){status.textContent='Google session not found. Please try signing in again.';return}
-      const username='google-'+data.session.user.id;
+      const user=data.session.user;
+      const username='google-'+user.id;
+      const profile=user.user_metadata||{};
+      const friendlyName=String(profile.full_name||profile.name||profile.given_name||user.email?.split('@')[0]||'Learner').trim().slice(0,60);
+      // Stable account ID remains the storage key, separate from the display label.
+      localStorage.setItem('notepilot:auth:display-name:'+username,friendlyName);
       localStorage.setItem('notepilot:auth:active-user:v1',username);
       localStorage.setItem('username',username);
       location.replace('index.html');
