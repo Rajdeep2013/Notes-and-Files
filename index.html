@@ -383,7 +383,27 @@
   </main>
 
   <script src="js/filePreview.js"></script>
-  <script src="script.js"></script>
+  <script src="script.js?v=google-display-1"></script>
+  <script>
+(function () {
+  // Repair previously signed-in Google profiles without changing their data keys.
+  const active=localStorage.getItem('notepilot:auth:active-user:v1');
+  if(!active||!active.startsWith('google-'))return;
+  import('https://esm.sh/@supabase/supabase-js@2.49.10').then(async ({createClient})=>{
+    const client=createClient('https://hnsjeoauzresxkbfrodu.supabase.co','sb_publishable_0D0se4u5F0n6z9Xgx3sUQg_o96wTS58');
+    const {data,error}=await client.auth.getSession();
+    if(error||!data.session?.user||'google-'+data.session.user.id!==active)return;
+    const user=data.session.user,profile=user.user_metadata||{};
+    const name=String(profile.full_name||profile.name||profile.given_name||user.email?.split('@')[0]||'Learner').trim().slice(0,60);
+    if(!name)return;
+    localStorage.setItem('notepilot:auth:display-name:'+active,name);
+    if(localStorage.getItem('notepilot:auth:active-user:v1')===active){
+      const heading=document.getElementById('welcomeText');
+      if(heading)heading.textContent='Welcome, '+name;
+    }
+  }).catch(()=>{ /* Offline: keep a previously stored name or neutral greeting. */ });
+})();
+</script>
   <script src="settings.js"></script>
   <script src="js/search.js"></script>
 <script>window.VISIONARY_ANALYTICS_ENDPOINT='https://hnsjeoauzresxkbfrodu.supabase.co/functions/v1/ingest-event';</script>
