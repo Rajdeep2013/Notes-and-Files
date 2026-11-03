@@ -534,7 +534,7 @@
       ensureUserDataBucket(legacyUser);
     }
 
-    function tryAutoRedirect() {
+    function tryAutoRedirect() {\n      if (new URLSearchParams(location.search).has("oauth")) return;
       const active = localStorage.getItem(SESSION_KEY);
       if (active) {
         localStorage.setItem(LEGACY_USERNAME_KEY, active);
@@ -628,5 +628,5 @@
     migrateLegacyAccount();
     tryAutoRedirect();
   </script>
-<script type="module">\nimport {createClient} from "https://esm.sh/@supabase/supabase-js@2.49.10";\nconst client=createClient("https://hnsjeoauzresxkbfrodu.supabase.co","sb_publishable_0D0se4u5F0n6z9Xgx3sUQg_o96wTS58");\nconst status=document.getElementById("googleStatus");\ndocument.getElementById("googleSignIn").onclick=async()=>{status.textContent="Opening Google sign-in…";const {error}=await client.auth.signInWithOAuth({provider:"google",options:{redirectTo:location.origin+location.pathname}});if(error)status.textContent=error.message};\nconst {data:{session}}=await client.auth.getSession();if(session?.user){const username="google-"+session.user.id;localStorage.setItem("notepilot:auth:active-user:v1",username);localStorage.setItem("username",username);location.replace("index.html")}\n</script></body>
+<script type="module">\nimport {createClient} from "https://esm.sh/@supabase/supabase-js@2.49.10";\nconst client=createClient("https://hnsjeoauzresxkbfrodu.supabase.co","sb_publishable_0D0se4u5F0n6z9Xgx3sUQg_o96wTS58");\nconst status=document.getElementById("googleStatus");\ndocument.getElementById("googleSignIn").onclick=async()=>{status.textContent="Opening Google sign-in…";const {error}=await client.auth.signInWithOAuth({provider:"google",options:{redirectTo:location.origin+location.pathname+"?oauth=1"}});if(error)status.textContent=error.message};\nconst {data:{session}}=await client.auth.getSession();if(session?.user){const username="google-"+session.user.id;localStorage.setItem("notepilot:auth:active-user:v1",username);localStorage.setItem("username",username);location.replace("index.html")}\n</script></body>
 </html>
